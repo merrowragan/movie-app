@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     get "/all_movies_path" => "movies#all_movies_action"
     get "/ordered_movies_path" => "movies#order_by_action"
     get "/pluck_path" => "movies#pluck_action"
+
+    get "/single_actor" => "actors#show_single_actor"
+    get "/single_actor/:id" => "actors#show_single_actor"
+    post "/single_actor" => "actors#show_single_actor"
+  
   end
 
 end
