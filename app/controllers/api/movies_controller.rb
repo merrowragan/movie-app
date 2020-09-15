@@ -1,23 +1,44 @@
 class Api::MoviesController < ApplicationController
 
-  def random_movie_action
-    @random_movie = Movie.all.sample
-    render "random_movie.json.jb"
+  def index
+    @movies = Movie.all
+    render "index.json.jb"
+  
   end
 
-  def all_movies_action
-    @all_movies = Movie.all
-    render "all_movies.json.jb"
+  def create
+    @movie = Movie.new(
+      title: params[:title] ,
+      year: params[:year] ,
+      plot: params[:plot]
+    )
+    @movie.save
+    render "show.json.jb"
+  end
+
+  def show
+    @movie = Movie.find(params[:id])
+    render "show.json.jb"
     
   end
 
-  def order_by_action
-    @ordered_movies = Movie.all.order(:created_at)
-    render "ordered_movies.json.jb"
-  end 
+  def update
+    @movie = Movie.find(params[:id])
 
-  def pluck_action
-    @plots = Movie.pluck(:id, :plot)
-    render "plots.json.jb"
+    @movie.title = params[:title] || @movie.title
+    @movie.year = params[:year] || @movie.year
+    @movie.plot = params[:plot] || @movie.plot
+
+    @movie.save
+    render "show.json.jb"
+    
   end
+
+  def destroy
+    movie = Movie.find(params[:id])
+    movie.destroy
+    render json: {message: "KABOOOOOM"}
+    
+  end
+
 end
