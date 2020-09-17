@@ -12,8 +12,12 @@ class Api::ActorsController < ApplicationController
       known_for: params[:known_for],
       age: params[:age]
     )
-    @actor.save
-    render "show.json.jb"
+    if @actor.save
+      render "show.json.jb"
+    else 
+      render json: {errors:@actor.errors.full_messages}, status: :unprocessable_entity
+    end
+
   end
 
   def show
@@ -30,8 +34,12 @@ class Api::ActorsController < ApplicationController
     @actor.known_for= params[:known_for] || @actor.known_for
     @actor.age = params[:age] || @actor.age
 
-    @actor.save
-    render "show.json.jb"
+    
+    if @actor.save
+      render "show.json.jb"
+    else 
+      render json: {errors:@actor.errors.full_messages}, status: :unprocessable_entity
+    end
     
   end
 
