@@ -1,9 +1,0 @@
-{
-
-
-id: @random_movie.id ,
-title: @random_movie.title ,
-year: @random_movie.year ,
-plot: @random_movie.plot
-
-}
