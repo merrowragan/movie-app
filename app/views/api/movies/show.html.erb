@@ -1,0 +1,20 @@
+
+<h1>Hey!! Look at this cool movie!! </h1>
+
+<form action="/movies" method="get">
+  <div> Title: <input type="text" name="title"value="The Magna Carta: Best Movie"></div> 
+  <div> Year: <input type="text" name="year"value="1215"></div>
+  <div> Plot: <input type="text" name="plot"value="I don't know literally all I remember about the Magna Carta is the date"></div>
+</form>
+  
+  
+
+<h1><%=@movie.title%></h1>
+<h3><%=@movie.year%></h3>
+<h4>Plot Summary: <%=@movie.plot%></h4>
+
+
+
+<a href="/api/movies">Cool Movies</a>
+
+<h6>g o o d b y e</h6>
